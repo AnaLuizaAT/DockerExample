@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Envie Frases</title>
+    <!-- External CSS file -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Envie sua frase</h1>
+      <form id="phraseForm">
+        <input type="text" id="phraseInput" placeholder="Digite uma frase" required />
+        <button type="submit">Enviar</button>
+      </form>
+
+      <h2>Frases Armazenadas</h2>
+      <ul id="phrasesList"></ul>
+      <button id="toggleBtn">Mostrar todas</button>
+    </div>
+
+    <script>
+      const form = document.getElementById("phraseForm");
+      const input = document.getElementById("phraseInput");
+      const phrasesList = document.getElementById("phrasesList");
+      const toggleBtn = document.getElementById("toggleBtn");
+
+      let showingAll = false;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const phrase = input.value;
+        try {
+          const res = await fetch("http://localhost:3000/add", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ phrase }),
+          });
+          input.value = "";
+          loadPhrases(); // Reload the current set (last 5 or all)
+        } catch (error) {
+          console.error("Erro ao enviar frase:", error);
+        }
+      });
+
+      // Function to load the last 5 phrases
+      async function loadPhrases() {
+        try {
+          const res = await fetch("http://localhost:3000/phrases");
+          const phrases = await res.json();
+          phrasesList.innerHTML = "";
+          phrases.forEach((phrase) => {
+            const li = document.createElement("li");
+            li.textContent = phrase.text;
+            phrasesList.appendChild(li);
+          });
+        } catch (error) {
+          console.error("Erro ao carregar frases:", error);
+        }
+      }
+
+      // Function to load all phrases
+      async function loadAllPhrases() {
+        try {
+          const res = await fetch("http://localhost:3000/phrases/all");
+          const phrases = await res.json();
+          phrasesList.innerHTML = "";
+          phrases.forEach((phrase) => {
+            const li = document.createElement("li");
+            li.textContent = phrase.text;
+            phrasesList.appendChild(li);
+          });
+        } catch (error) {
+          console.error("Erro ao carregar todas as frases:", error);
+        }
+      }
+
+      // Toggle between showing the last 5 phrases and showing all
+      toggleBtn.addEventListener("click", () => {
+        if (showingAll) {
+          loadPhrases(); // Show last 5 phrases
+          toggleBtn.textContent = "Mostrar todas";
+        } else {
+          loadAllPhrases(); // Show all phrases
+          toggleBtn.textContent = "Mostrar menos";
+        }
+        showingAll = !showingAll;
+      });
+
+      // Load the last 5 phrases on page load
+      loadPhrases();
+    </script>
+  </body>
+</html>
