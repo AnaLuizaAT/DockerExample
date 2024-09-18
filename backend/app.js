@@ -5,9 +5,8 @@ const cors = require("cors");
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors()); // Enable CORS for any origin
+app.use(cors());
 
-// Connect to MySQL database
 const db = mysql.createConnection({
   host: "db",
   user: "root",
@@ -20,7 +19,6 @@ db.connect((err) => {
   console.log("Connected to the MySQL database");
 });
 
-// Endpoint to add a phrase
 app.post("/add", (req, res) => {
   const phrase = req.body.phrase;
   if (!phrase) {
@@ -33,7 +31,6 @@ app.post("/add", (req, res) => {
   });
 });
 
-// Endpoint to fetch the last 5 phrases
 app.get("/phrases", (req, res) => {
   const query = "SELECT * FROM phrases ORDER BY id DESC LIMIT 5";
   db.query(query, (err, results) => {
@@ -42,7 +39,6 @@ app.get("/phrases", (req, res) => {
   });
 });
 
-// Endpoint to fetch all phrases
 app.get("/phrases/all", (req, res) => {
   const query = "SELECT * FROM phrases ORDER BY id DESC";
   db.query(query, (err, results) => {
