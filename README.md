@@ -57,17 +57,17 @@ Siga os passos abaixo para rodar o projeto localmente:
 ## Estrutura de Pastas
 
 Abaixo está uma visão geral das pastas e arquivos mais importantes no projeto:
-├── backend
-│   ├── app.js              # Código principal do backend
-│   ├── package.json        # Dependências do backend
-│   ├── waitForDB.sh        # Script para garantir que o banco de dados esteja pronto antes do backend iniciar
-├── frontend
-│   ├── index.html          # Página web principal
-│   ├── styles.css          # Arquivo CSS para estilização
-├── db
-│   ├── init.sql             # Script de inicialização do banco de dados
-├── docker-compose.yml       # Arquivo de configuração do Docker Compose
-└── README.md                # Documentação do projeto
+-├── backend
+-│   ├── app.js              # Código principal do backend
+-│   ├── package.json        # Dependências do backend
+-│   ├── waitForDB.sh        # Script para garantir que o banco de dados esteja pronto antes do backend iniciar
+-├── frontend
+-│   ├── index.html          # Página web principal
+-│   ├── styles.css          # Arquivo CSS para estilização
+-├── db
+-│   ├── init.sql             # Script de inicialização do banco de dados
+-├── docker-compose.yml       # Arquivo de configuração do Docker Compose
+-└── README.md                # Documentação do projeto
 
 ## Endpoints da API
 
