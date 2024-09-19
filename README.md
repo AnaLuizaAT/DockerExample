@@ -68,6 +68,8 @@ Abaixo está uma visão geral das pastas e arquivos mais importantes no projeto:
 -│   ├── init.sql             # Script de inicialização do banco de dados
 -├── docker-compose.yml       # Arquivo de configuração do Docker Compose
 -└── README.md                # Documentação do projeto
+![image](https://github.com/user-attachments/assets/c4659b5d-8d6f-4d5b-8baf-863ce544605b)
+
 
 ## Endpoints da API
 
