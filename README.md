@@ -65,7 +65,7 @@ Abaixo está uma visão geral das pastas e arquivos mais importantes no projeto:
 │   ├── index.html          # Página web principal
 │   ├── styles.css          # Arquivo CSS para estilização
 ├── db
-│   ├── init.sql            # Script de inicialização do banco de dados
+│   ├── init.sql             # Script de inicialização do banco de dados
 ├── docker-compose.yml       # Arquivo de configuração do Docker Compose
 └── README.md                # Documentação do projeto
 
