@@ -1,67 +1,62 @@
-📝 Projeto de Armazenamento de Frases com Docker, Node.js, MySQL e Nginx
+# Armazenamento de Frases com Docker, Node.js, MySQL e Nginx
 
-📋 Descrição
+Este projeto é uma aplicação web simples para armazenar e visualizar frases. Utilizamos **Node.js** e **Express** no backend, **MySQL** como banco de dados, **Nginx** para servir o frontend e **Docker** para containerizar todos os serviços, garantindo que o projeto possa ser executado de maneira consistente em qualquer ambiente.
 
-Este projeto é uma aplicação full stack que permite aos usuários inserir frases em um formulário web, armazená-las em um banco de dados MySQL e visualizá-las em uma interface web dinâmica. O projeto utiliza Node.js no backend, Nginx para servir o frontend e Docker para containerizar todos os serviços, facilitando a execução e o deploy da aplicação.
+## Funcionalidades
+- **Inserir Frases**: Permite que o usuário insira frases que são armazenadas no banco de dados.
+- **Exibir Últimas 5 Frases**: Exibe apenas as últimas 5 frases na página inicial.
+- **Mostrar Mais / Mostrar Menos**: Permite alternar entre visualizar todas as frases ou apenas as últimas 5.
 
+## Tecnologias Utilizadas
+- **Node.js** com Express: Backend responsável por gerenciar as requisições e interagir com o banco de dados.
+- **MySQL**: Banco de dados relacional utilizado para armazenar as frases.
+- **Nginx**: Servidor web utilizado para servir o frontend.
+- **Docker**: Ferramenta de containerização para garantir a consistência do ambiente.
+- **Docker Compose**: Orquestração dos containers do backend, frontend e banco de dados.
+- **HTML, CSS, JavaScript**: Utilizados para a construção da interface do usuário.
 
-🎯 Funcionalidades
-Enviar novas frases para o banco de dados.
-Exibir as frases armazenadas na interface web.
-Mostrar os 5 últimos registros por padrão, com a opção de exibir todos.
-Alternar entre exibir menos e exibir mais registros.
+## Estrutura do Projeto
 
+O projeto é composto por três containers principais:
+1. **Backend** (Node.js + Express): Gerencia as requisições e se comunica com o banco de dados MySQL.
+2. **Frontend** (Nginx): Serve a interface de usuário estática.
+3. **Banco de Dados** (MySQL): Armazena as frases inseridas pelos usuários.
 
-🛠️ Tecnologias Utilizadas
-Docker: Para criar e gerenciar os containers do projeto.
-Node.js: Para criar a API no backend e se comunicar com o banco de dados.
-Express.js: Framework para criar o servidor backend.
-MySQL: Banco de dados relacional para armazenar as frases.
-Nginx: Servidor web para servir o frontend.
-HTML/CSS/JavaScript: Construção da interface de usuário (frontend).
-Docker Compose: Orquestração dos diferentes serviços do projeto.
+## Requisitos
 
+Antes de rodar o projeto, certifique-se de ter os seguintes programas instalados:
+- **Docker**: [Instale o Docker](https://docs.docker.com/get-docker/)
+- **Docker Compose**: [Instale o Docker Compose](https://docs.docker.com/compose/install/)
 
-🚀 Como Rodar o Projeto
-Pré-requisitos
-Ter o Docker e o Docker Compose instalados na sua máquina.
+## Como Rodar o Projeto
 
+Siga os passos abaixo para rodar o projeto localmente:
 
-Passos para execução
-Clone o repositório:
-git clone <...DockerExample>
-cd DockerExample
+1. Clone o repositório para sua máquina:
+    ```bash
+    git clone <URL_DO_REPOSITORIO>
+    ```
 
-Inicie os containers: 
-Execute o seguinte comando para rodar os serviços do projeto:
-docker-compose up --build
+2. Navegue até o diretório do projeto:
+    ```bash
+    cd <DIRETORIO_DO_PROJETO>
+    ```
 
-Isso vai compilar e iniciar os três containers: frontend, backend e db (MySQL).
+3. Execute o Docker Compose para construir os containers e rodar a aplicação:
+    ```bash
+    docker-compose up --build
+    ```
 
-Acesse a aplicação:
-Abra o navegador e vá para: http://localhost:8080
-Agora você pode enviar frases e visualizá-las na interface web.
+4. Acesse a aplicação no navegador:
+    ```
+    http://localhost:8080
+    ```
 
-Como o projeto está estruturado
-/backend: Contém o código Node.js do backend que lida com as requisições HTTP e interage com o banco de dados MySQL.
-/frontend: Contém os arquivos index.html e styles.css, que formam a interface web do usuário.
-/db: Contém o arquivo SQL de inicialização do banco de dados.
+5. Insira frases na interface e visualize as frases armazenadas no banco de dados.
 
+## Estrutura de Pastas
 
-⚙️ Endpoints da API
-
-POST /add: Envia uma frase para ser armazenada no banco de dados.
-
-Body (JSON):
-{
-  "phrase": "Sua frase aqui"
-}
-
-GET /phrases: Retorna todas as frases armazenadas no banco de dados em formato JSON.
-
-📂 Estrutura do Projeto
-bash
-Copiar código
+Abaixo está uma visão geral das pastas e arquivos mais importantes no projeto:
 ├── backend
 │   ├── app.js              # Código principal do backend
 │   ├── package.json        # Dependências do backend
@@ -74,15 +69,45 @@ Copiar código
 ├── docker-compose.yml       # Arquivo de configuração do Docker Compose
 └── README.md                # Documentação do projeto
 
+## Endpoints da API
 
-🛠️ Scripts Disponíveis
-Iniciar os containers:
-docker-compose up --build
+O backend expõe alguns endpoints RESTful:
 
+1. **Adicionar uma frase**: 
+    - Método: `POST`
+    - Rota: `/add`
+    - Descrição: Adiciona uma nova frase ao banco de dados.
+    - Exemplo de corpo da requisição:
+      ```json
+      {
+        "phrase": "Aqui está uma nova frase!"
+      }
+      ```
 
-Parar os containers:
-docker-compose down
+2. **Listar todas as frases**: 
+    - Método: `GET`
+    - Rota: `/phrases`
+    - Descrição: Retorna todas as frases armazenadas no banco de dados.
 
+## Como Contribuir
 
-Acessar o banco de dados MySQL dentro do container:
-docker exec -it <nome_do_container_db> mysql -u root -p
+Contribuições são bem-vindas! Se você deseja melhorar o projeto ou corrigir algum problema, siga os passos abaixo:
+
+1. Faça um fork do repositório.
+2. Crie uma nova branch para suas alterações:
+    ```bash
+    git checkout -b minha-feature
+    ```
+3. Faça o commit das suas alterações:
+    ```bash
+    git commit -m "Minha nova feature"
+    ```
+4. Envie suas alterações para o repositório:
+    ```bash
+    git push origin minha-feature
+    ```
+5. Abra um **Pull Request**.
+
+---
+
+Sinta-se à vontade para fazer melhorias no projeto e explorar novas funcionalidades!
